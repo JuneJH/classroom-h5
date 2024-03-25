@@ -1,8 +1,34 @@
-import { FC } from "react"
+import { getSwiper } from "@/services/swiper";
+import { FC, useEffect, useState } from "react";
+import { Button, Space, Swiper, Image } from "antd-mobile";
+import style from "./index.less";
+const Index: FC = () => {
+  const [urls, seturls] = useState([]);
+  useEffect(() => {
+    getSwiper().then((res) => {
+      if (res.data.code == "10200") {
+        seturls(res.data.data);
+      }
+    });
 
-const Index:FC = ()=>{
-    return <div>Home</div>
-}
+    return () => {};
+  }, []);
 
+  return (
+    <div>
+      <div className={style.swiperContainer}>
+        <Swiper>
+          {urls.map((item: any, index) => {
+            return (
+              <Swiper.Item key={index} className={style.img}>
+                <Image className={style.img} src={`/api/v1/${item.url}`} />
+              </Swiper.Item>
+            );
+          })}
+        </Swiper>
+      </div>
+    </div>
+  );
+};
 
 export default Index;
