@@ -1,7 +1,7 @@
 {
   "name": "h5",
   "version": "1.0.0",
-  "description": "&gt; TODO: 项目描述信息",
+  "description": "&gt; TODO: 小橘子教育平台-h5端",
   "scripts": {
     "dev": "umi dev",
     "build": "umi build",
