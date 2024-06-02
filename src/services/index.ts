@@ -1,3 +1,4 @@
+import { getTokenByStorage } from '@/utils/storage';
 import axios from 'axios';
 
 
@@ -10,7 +11,7 @@ const request = axios.create({
 request.interceptors.request.use(
     function (config) {
         // 在发送请求之前做些什么，比如添加认证信息、设置请求头等
-        config.headers.Authorization = 'Bearer your_access_token'; // 替换为你的认证信息
+        config.headers.Authorization = getTokenByStorage(); // 替换为你的认证信息
         return config;
     },
     function (error) {

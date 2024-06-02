@@ -6,7 +6,7 @@ import {
   UnorderedListOutline,
   UserOutline,
 } from "antd-mobile-icons";
-import { history, useLocation,Outlet } from "umi";
+import { history, useLocation, Outlet, useRoutes } from "umi";
 
 import styles from "./index.less";
 import "../assets/styles/reset.css";
@@ -45,14 +45,19 @@ const Bottom: FC = () => {
   );
 };
 
-const Layout: FC = () => {
+const Layout: FC = (props) => {
+  const location = useLocation();
+  if (location.pathname === "/login") {
+    return <Outlet />;
+  }
+
   return (
     <div className={styles.app}>
       <div className={styles.top}>
         <NavBar>配合路由使用</NavBar>
       </div>
       <div className={styles.body}>
-        <Outlet/>
+        <Outlet />
       </div>
       <div className={styles.bottom}>
         <Bottom />

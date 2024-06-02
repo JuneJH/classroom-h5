@@ -19,11 +19,13 @@ if (process.env.NODE_ENV === 'development') {
 import React from 'react';
 
 export async function getRoutes() {
-  const routes = {"Classfiy/index":{"path":"Classfiy","id":"Classfiy/index","parentId":"@@/global-layout"},"Home/index":{"path":"Home","id":"Home/index","parentId":"@@/global-layout"},"Note/index":{"path":"Note","id":"Note/index","parentId":"@@/global-layout"},"Own/index":{"path":"Own","id":"Own/index","parentId":"@@/global-layout"},"index":{"path":"/","id":"index","parentId":"@@/global-layout"},"@@/global-layout":{"id":"@@/global-layout","path":"/","isLayout":true}} as const;
+  const routes = {"Classfiy/index":{"path":"Classfiy","id":"Classfiy/index","parentId":"@@/global-layout"},"Note/$id/index":{"path":"Note/:id","id":"Note/$id/index","parentId":"@@/global-layout"},"Login/index":{"path":"Login","id":"Login/index","parentId":"@@/global-layout"},"Home/index":{"path":"Home","id":"Home/index","parentId":"@@/global-layout"},"Note/index":{"path":"Note","id":"Note/index","parentId":"@@/global-layout"},"Own/index":{"path":"Own","id":"Own/index","parentId":"@@/global-layout"},"index":{"path":"/","id":"index","parentId":"@@/global-layout"},"@@/global-layout":{"id":"@@/global-layout","path":"/","isLayout":true}} as const;
   return {
     routes,
     routeComponents: {
 'Classfiy/index': React.lazy(() => import(/* webpackChunkName: "src__pages__Classfiy__index" */'../../../src/pages/Classfiy/index.tsx')),
+'Note/$id/index': React.lazy(() => import(/* webpackChunkName: "src__pages__Note__$id__index" */'../../../src/pages/Note/$id/index.tsx')),
+'Login/index': React.lazy(() => import(/* webpackChunkName: "src__pages__Login__index" */'../../../src/pages/Login/index.tsx')),
 'Home/index': React.lazy(() => import(/* webpackChunkName: "src__pages__Home__index" */'../../../src/pages/Home/index.tsx')),
 'Note/index': React.lazy(() => import(/* webpackChunkName: "src__pages__Note__index" */'../../../src/pages/Note/index.tsx')),
 'Own/index': React.lazy(() => import(/* webpackChunkName: "src__pages__Own__index" */'../../../src/pages/Own/index.tsx')),
