@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { createContext, useState, type FC } from "react";
 import { NavBar, TabBar } from "antd-mobile";
 import {
   AppOutline,
@@ -6,13 +6,14 @@ import {
   UnorderedListOutline,
   UserOutline,
 } from "antd-mobile-icons";
-import { history, useLocation, Outlet, useRoutes } from "umi";
+import { history, useLocation, Outlet, useRoutes, useNavigate } from "umi";
 
 import styles from "./index.less";
 import "../assets/styles/reset.css";
 
 const Bottom: FC = () => {
   const location = useLocation();
+
   const { pathname } = location;
   const setRouteActive = (value: string) => {
     history.push(value);
@@ -44,25 +45,28 @@ const Bottom: FC = () => {
     </TabBar>
   );
 };
-
+export const LayoutContext = createContext({});
 const Layout: FC = (props) => {
-  const location = useLocation();
+  const location = useLocation(); 
+  const [navTitle, setNavTitle] = useState("首页")
   if (location.pathname === "/login") {
     return <Outlet />;
   }
 
   return (
-    <div className={styles.app}>
-      <div className={styles.top}>
-        <NavBar>配合路由使用</NavBar>
+    <LayoutContext.Provider value={{navTitle,setNavTitle}}>
+      <div className={styles.app}>
+        <div className={styles.top}>
+          <NavBar onBack={history.back}>{navTitle}</NavBar>
+        </div>
+        <div className={styles.body}>
+          <Outlet />
+        </div>
+        <div className={styles.bottom}>
+          <Bottom />
+        </div>
       </div>
-      <div className={styles.body}>
-        <Outlet />
-      </div>
-      <div className={styles.bottom}>
-        <Bottom />
-      </div>
-    </div>
+    </LayoutContext.Provider>
   );
 };
 

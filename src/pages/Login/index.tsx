@@ -3,6 +3,8 @@ import { Button, Form, Input } from "antd-mobile";
 import { getCaptcha, login } from "@/services/login";
 import { setTokenByStorage } from "@/utils/storage";
 import { useNavigate } from "umi";
+import style from "./index.less";
+import logo from '../../assets/logo.png';
 
 const Login: FC = () => {
   const navigate = useNavigate();
@@ -36,7 +38,10 @@ const Login: FC = () => {
     }
   };
   return (
-    <div>
+    <div className={style.container}>
+      <h1>
+        <img className={style.logo} src={logo}></img>
+        <span style={{color:"orange"}}>小橘子</span>教育平台</h1>
       <Form form={form} layout="horizontal" mode="card">
         <Form.Item label="用户名" name="username">
           <Input placeholder="请输入" />
@@ -47,7 +52,7 @@ const Login: FC = () => {
         <Form.Item label="验证码" name="code" extra={render()}>
           <Input placeholder="请输入" />
         </Form.Item>
-        <Button block color="primary" onClick={onSubmit} size="large">
+        <Button block style={{marginTop:35}} color="primary" onClick={onSubmit} size="large">
           提交
         </Button>
       </Form>

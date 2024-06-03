@@ -2,7 +2,9 @@ import { getSwiper } from "@/services/swiper";
 import { FC, useEffect, useState } from "react";
 import { Button, Space, Swiper, Image } from "antd-mobile";
 import style from "./index.less";
+import { history } from "umi";
 const Index: FC = () => {
+  history.replace("/note");
   const [urls, seturls] = useState([]);
   useEffect(() => {
     getSwiper().then((res) => {
